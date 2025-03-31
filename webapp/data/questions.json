@@ -1,0 +1,32 @@
+{
+  "questions": [
+    {
+      "question": "Which kubectl command is used to create a new Pod from a YAML file?",
+      "answers": [
+        "kubectl create -f pod.yaml",
+        "kubectl apply -f pod.yaml",
+        "kubectl run -f pod.yaml",
+        "kubectl start -f pod.yaml"
+      ],
+      "correctAnswer": 1,
+      "explanation": "kubectl apply -f pod.yaml is the recommended way to create or update resources using declarative configuration files."
+    },
+    {
+      "question": "What command would you use to list all namespaces in the cluster?",
+      "answers": [
+        "kubectl get ns",
+        "kubectl list namespaces",
+        "kubectl show ns",
+        "kubectl describe namespaces"
+      ],
+      "correctAnswer": 0,
+      "explanation": "kubectl get ns is the standard command to list all namespaces in a Kubernetes cluster. You can also use the full form: kubectl get namespaces"
+    },
+    {
+      "question": "How many pods are in the 'practice-apps' namespace?",
+      "answers": ["0", "1", "2", "5"],
+      "correctAnswer": 3,
+      "explanation": "The command 'kubectl get pods -n practice-apps --no-headers | wc -l' will give you an accurate count of pods. The --no-headers flag removes the header line, ensuring the count is accurate."
+    }
+  ]
+}
