@@ -1,0 +1,19 @@
+[project]
+name = "chaos-agent"
+version = "0.1.0"
+description = "LLM-powered chaos engineering agent for the CKAD practice tool"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+  "langchain>=0.3.25",
+  "langchain-community>=0.3.24",
+  "langchain-openai>=0.3.17",
+  "langgraph>=0.4.3",
+  "langsmith>=0.3.42",
+  "pydantic>=2.11.7",
+  "python-dotenv>=1.1.0",
+]
+
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
