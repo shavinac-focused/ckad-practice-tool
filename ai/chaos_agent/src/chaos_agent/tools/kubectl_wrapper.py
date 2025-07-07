@@ -9,7 +9,7 @@ def kubectl_exec(command: str, namespace: str = "practice-apps") -> str:
         full_command = f"docker exec ckad-practice-env {command}"
     else:
         full_command = f"docker exec ckad-practice-env kubectl -n {namespace} {command}"
-    print(f"Executing command: {full_command}")
+    # print(f"Executing command: {full_command}") # DEBUG
     result = subprocess.run(full_command, shell=True, capture_output=True, text=True)
     return result.stdout
 

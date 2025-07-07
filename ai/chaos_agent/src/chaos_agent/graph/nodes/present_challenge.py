@@ -21,7 +21,7 @@ def present_challenge(state: GraphState) -> GraphState:
     ===================================
     
     Your task is to identify and fix the issues in the Kubernetes cluster.
-    Type 'hint' for a hint, or 'verify' when you think you've fixed the issues.
+    Type 'verify' when you think you've fixed the issues.
     """
     
     print(challenge_text)

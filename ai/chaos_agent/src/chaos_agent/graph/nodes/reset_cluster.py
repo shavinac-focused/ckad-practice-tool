@@ -1,3 +1,4 @@
+from langgraph.types import interrupt
 from chaos_agent.graph.state import GraphState
 from chaos_agent.tools.kubectl_wrapper import kubectl_exec
 
@@ -28,14 +29,23 @@ def reset_cluster(state: GraphState) -> GraphState:
     state.verification_steps = []
     state.challenge = None
     state.attempt_count = 0
-    
+
+    # Check state.user_feedback in case we were sent here from provide_feedback
+    if (state.user_feedback == "exit"):
+        return { "user_feedback": "exit" }
+
     # Ask if the user wants to continue with a new challenge
-    print("\nWould you like to:")
-    print("1. Start a new challenge")
-    print("2. Exit practice session")
-    
-    # In a real implementation, this would be handled by your UI/CLI
-    # For now, we'll just set a placeholder feedback
-    state.user_feedback = "new_challenge"
-    
-    return state
+    user_response = interrupt(
+        {
+            "task": """Would you like to:
+            1. Start a new challenge
+            2. Exit practice session"""
+        }
+    )
+    if ('1' in user_response):
+        return { "user_feedback": "new_challenge" }
+    elif ('2' in user_response):
+        return { "user_feedback": "exit" }
+    else:
+        print("Unknown response. Assuming you want to exit.")
+        return { "user_feedback": "exit" }

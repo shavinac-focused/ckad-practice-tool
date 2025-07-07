@@ -27,6 +27,7 @@ def design_mutations(state: GraphState) -> GraphState:
     Design specific mutations (changes) to apply to the Kubernetes cluster that will create the issues described in the challenge.
     Each mutation should be a kubectl command that can be executed to introduce a specific issue.
     Keep the list of mutations small, only return 1-3 mutations for now.
+    Make sure each mutation can be executed and completed inline without additional text input - for example, do not use `kubectl edit`
     
     Format your response as a list of mutations, each with:
     COMMAND: [kubectl command to execute]

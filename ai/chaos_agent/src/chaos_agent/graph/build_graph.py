@@ -1,5 +1,6 @@
 from typing import Literal
 from langgraph.graph import START, END, StateGraph
+from langgraph.checkpoint.memory import InMemorySaver
 from chaos_agent.graph.state import GraphState
 from chaos_agent.graph.nodes.initialize_state import initialize_state
 from chaos_agent.graph.nodes.generate_challenge import generate_challenge
@@ -30,11 +31,11 @@ def build_graph():
   # Add edges
   builder.add_edge(START, "initialize_state")
   builder.add_conditional_edges("verify_solution", route_on_solution_solved, ["reset_cluster", "provide_feedback"])
-  builder.add_conditional_edges("provide_feedback", route_end_or_new_solution, ["generate_challenge", END])
   builder.add_conditional_edges("reset_cluster", route_end_or_new_solution, ["generate_challenge", END])
-  
-  graph = builder.compile()
-  print("--- Graph compiled successfully ---")  # DEBUG
+
+  checkpointer = InMemorySaver()
+  graph = builder.compile(checkpointer=checkpointer)
+  print("--- Graph compiled successfully ---")
 
   return graph
 
