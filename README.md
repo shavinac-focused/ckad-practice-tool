@@ -36,6 +36,13 @@ A local practice environment for the Certified Kubernetes Application Developer 
    # run kubectl commands
    ```
 
+6. To try the "chaos agent":
+   ```bash
+   cd ai/chaos_agent
+   cp .env.example .env # make sure to provide API keys
+   uv run -m chaos_agent.main
+   ```
+
 ## Project Structure
 
 ```

@@ -4,6 +4,9 @@ from chaos_agent.tools.kubectl_wrapper import kubectl_exec
 
 def verify_solution(state: GraphState):
     """Check if user has fixed the issues"""
+    # TODO - implement cluster checker
+    # either this can be a "dumb" diff checker by comparing the baseline manifests with the current state
+    # or this can be an LLM with tools to view the cluster and check for issues
     if not state.verification_steps:
         print("No verification steps defined")
         return state
