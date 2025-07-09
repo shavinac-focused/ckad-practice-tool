@@ -38,6 +38,9 @@ A local practice environment for the Certified Kubernetes Application Developer 
 
 6. To try the "chaos agent":
    ```bash
+   ./scripts/start-env.sh # start the practice environment, if needed
+   docker exec ckad-practice-env kubectl get all -n practice-apps # check that the environment is running
+
    cd ai/chaos_agent
    cp .env.example .env # make sure to provide API keys
    uv run -m chaos_agent.main
